@@ -24,6 +24,7 @@
                 <li><a href="#roadmap">Roadmap</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#resources">Resources</a></li>
+                <li><a href="#quiz">Quiz</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -40,7 +41,7 @@
             </p>
             <div class="hero-btns">
                 <a href="#technology" class="btn">Explore Technologies</a>
-                <a href="#roadmap" class="btn btn2">Start Learning</a>
+                <a href="#quiz" class="btn btn2">Play Quiz</a>
             </div>
         </div>
     </section>
@@ -111,14 +112,20 @@
     <!-- ================= AI TOOLS ================= -->
     <section id="aitools" class="ai-tools">
         <h2>Popular AI Tools</h2>
-        <div class="ai-container">
-            <div class="ai-card"><h3>🤖 ChatGPT</h3><p>AI chatbot for coding, writing, learning, and problem-solving.</p></div>
-            <div class="ai-card"><h3>💎 Gemini</h3><p>Google AI assistant for research and productivity.</p></div>
-            <div class="ai-card"><h3>🧠 Claude</h3><p>AI assistant for long documents and programming help.</p></div>
-            <div class="ai-card"><h3>💻 GitHub Copilot</h3><p>AI coding assistant for developers.</p></div>
-            <div class="ai-card"><h3>🎨 Canva AI</h3><p>Create presentations, posters, and graphics quickly.</p></div>
-            <div class="ai-card"><h3>📝 Notion AI</h3><p>AI-powered notes, summaries, and productivity.</p></div>
+        <p class="section-desc">Search a tool below to filter instantly, or open it directly.</p>
+        <div class="search-bar-wrap">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="ai-search" placeholder="Search AI tools (e.g. ChatGPT, Claude, Notion AI)...">
         </div>
+        <div class="ai-container" id="ai-container">
+            <div class="ai-card" data-name="chatgpt"><h3>🤖 ChatGPT</h3><p>AI chatbot for coding, writing, learning, and problem-solving.</p></div>
+            <div class="ai-card" data-name="gemini"><h3>💎 Gemini</h3><p>Google AI assistant for research and productivity.</p></div>
+            <div class="ai-card" data-name="claude"><h3>🧠 Claude</h3><p>AI assistant for long documents and programming help.</p></div>
+            <div class="ai-card" data-name="github copilot"><h3>💻 GitHub Copilot</h3><p>AI coding assistant for developers.</p></div>
+            <div class="ai-card" data-name="canva ai"><h3>🎨 Canva AI</h3><p>Create presentations, posters, and graphics quickly.</p></div>
+            <div class="ai-card" data-name="notion ai"><h3>📝 Notion AI</h3><p>AI-powered notes, summaries, and productivity.</p></div>
+        </div>
+        <p class="no-results" id="ai-no-results" hidden>No AI tools match your search.</p>
     </section>
 
     <!-- ================= ROADMAP ================= -->
@@ -162,38 +169,74 @@
     <section id="resources" class="resources">
         <h2>Free Learning Resources</h2>
         <p class="section-desc">Access official study notes and tutorials for free.</p>
-        <div class="resource-container">
-            <a href="https://www.w3schools.com/html/" target="_blank" class="resource-card">
+        <div class="search-bar-wrap">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="resource-search" placeholder="Search resources (e.g. Python, SQL, CSS)...">
+        </div>
+        <div class="resource-container" id="resource-container">
+            <a href="https://www.w3schools.com/html/" target="_blank" class="resource-card" data-name="html">
                 <i class="fa-solid fa-code"></i>
                 <h3>📘 HTML Notes</h3>
                 <p>Learn HTML structure with W3Schools tutorials.</p>
             </a>
-            <a href="https://www.w3schools.com/css/" target="_blank" class="resource-card">
+            <a href="https://www.w3schools.com/css/" target="_blank" class="resource-card" data-name="css">
                 <i class="fa-solid fa-paintbrush"></i>
                 <h3>🎨 CSS Notes</h3>
                 <p>Learn styling and layouts with W3Schools CSS.</p>
             </a>
-            <a href="https://www.w3schools.com/js/" target="_blank" class="resource-card">
+            <a href="https://www.w3schools.com/js/" target="_blank" class="resource-card" data-name="javascript">
                 <i class="fa-solid fa-bolt"></i>
                 <h3>⚡ JavaScript Notes</h3>
                 <p>Master website interactivity using JavaScript.</p>
             </a>
-            <a href="https://www.w3schools.com/python/" target="_blank" class="resource-card">
+            <a href="https://www.w3schools.com/python/" target="_blank" class="resource-card" data-name="python">
                 <i class="fa-solid fa-laptop-code"></i>
                 <h3>🐍 Python Notes</h3>
                 <p>Learn Python programming from basics to advanced.</p>
             </a>
-            <a href="https://www.w3schools.com/java/" target="_blank" class="resource-card">
+            <a href="https://www.w3schools.com/java/" target="_blank" class="resource-card" data-name="java">
                 <i class="fa-solid fa-mug-hot"></i>
                 <h3>☕ Java Notes</h3>
                 <p>Explore object-oriented programming with Java.</p>
             </a>
-            <a href="https://www.w3schools.com/sql/" target="_blank" class="resource-card">
+            <a href="https://www.w3schools.com/sql/" target="_blank" class="resource-card" data-name="sql">
                 <i class="fa-solid fa-database"></i>
                 <h3>🗄️ SQL Notes</h3>
                 <p>Manage and query databases using SQL.</p>
             </a>
         </div>
+        <p class="no-results" id="resource-no-results" hidden>No resources match your search.</p>
+    </section>
+
+    <!-- ================= QUIZ GAME (Interactive, JS powered) ================= -->
+    <section id="quiz" class="quiz-section">
+        <h2>🎮 Test Your Knowledge</h2>
+        <p class="section-desc">Answer the questions, get instant feedback, and see your final score!</p>
+
+        <div id="quiz-body">
+            <div class="quiz-topbar">
+                <div class="quiz-progress-wrap">
+                    <div class="quiz-progress-label">
+                        <span>Question <span id="quiz-progress-current">1</span> / <span id="quiz-progress-total">7</span></span>
+                    </div>
+                    <div class="quiz-progress-bar">
+                        <div class="quiz-progress-fill" id="quiz-progress-fill"></div>
+                    </div>
+                </div>
+                <div class="quiz-score-badge">⭐ Score: <span id="quiz-score-value">0</span></div>
+            </div>
+
+            <div class="qa-container" id="qa-container">
+                <!-- Questions are injected here by script.js -->
+            </div>
+
+            <div class="quiz-controls">
+                <button class="quiz-btn" id="quiz-next-btn" type="button" disabled>Next ➜</button>
+                <button class="quiz-btn secondary" id="quiz-restart-btn" type="button">🔁 Restart</button>
+            </div>
+        </div>
+
+        <div class="quiz-result" id="quiz-result"></div>
     </section>
 
     <!-- ================= FAQ ================= -->
@@ -214,19 +257,20 @@
         <div class="cta-content">
             <h2>Start Your Tech Journey Today!</h2>
             <p>Learn the latest technologies, explore AI tools, build amazing projects, and become industry-ready with The Coding Hub.</p>
-            <a href="#technology" class="cta-btn">Explore Technologies</a>
+            <a href="#quiz" class="cta-btn">Play the Quiz</a>
         </div>
     </section>
 
     <!-- ================= CONTACT ================= -->
     <section id="contact" class="contact">
         <h2>Contact Us</h2>
-        <form>
+        <form id="contact-form">
             <input type="text" placeholder="Your Name" required>
             <input type="email" placeholder="Your Email" required>
             <textarea placeholder="Your Message" rows="5" required></textarea>
             <button type="submit" class="submit-btn">Send Message</button>
         </form>
+        <p class="form-status" id="form-status"></p>
     </section>
 
     <!-- ================= FOOTER ================= -->
@@ -242,5 +286,9 @@
         <p>© 2026 The Coding Hub. All Rights Reserved.</p>
     </footer>
 
+    <!-- Back to top -->
+    <a href="#home" class="back-to-top" id="back-to-top"><i class="fa-solid fa-arrow-up"></i></a>
+
+    <script src="script.js"></script>
 </body>
 </html>
