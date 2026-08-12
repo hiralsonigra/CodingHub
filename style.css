@@ -294,6 +294,11 @@ section h2 {
     background: #0ea5e9;
 }
 
+.submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 .form-status {
     max-width: 600px;
     margin: 15px auto 0 auto;
@@ -301,6 +306,10 @@ section h2 {
     color: #4ade80;
     font-weight: 600;
     min-height: 1.2em;
+}
+
+.form-status.error {
+    color: #f87171;
 }
 
 /* Footer */
