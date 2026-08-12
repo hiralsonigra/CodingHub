@@ -1,3 +1,9 @@
+// ================= SUPABASE SETUP =================
+const SUPABASE_URL = "https://dgvuylgkcdekzpeibiex.supabase.co";
+const SUPABASE_KEY = "sb_publishable_Xmg8ZmBHeZ4on-lyMIReUQ_8ab2LA3R";
+const { createClient } = supabase;
+const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
+
 // ================= AI TOOLS SEARCH FILTER =================
 const aiSearchInput = document.getElementById('ai-search');
 const aiCards = document.querySelectorAll('#ai-container .ai-card');
@@ -221,18 +227,46 @@ if (backToTopBtn) {
     });
 }
 
-// ================= CONTACT FORM (front-end only) =================
+// ================= CONTACT FORM (connected to Supabase) =================
 const contactForm = document.getElementById('contact-form');
 const formStatus = document.getElementById('form-status');
 
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        formStatus.textContent = "✅ Thanks! Your message has been noted (demo form — no backend connected).";
-        contactForm.reset();
+
+        const nameInput = document.getElementById('contact-name');
+        const emailInput = document.getElementById('contact-email');
+        const messageInput = document.getElementById('contact-message');
+        const submitBtn = contactForm.querySelector('.submit-btn');
+
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const message = messageInput.value.trim();
+
+        submitBtn.disabled = true;
+        formStatus.classList.remove('error');
+        formStatus.textContent = "Sending...";
+
+        const { error } = await supabaseClient
+            .from('contacts')
+            .insert([{ name, email, message }]);
+
+        submitBtn.disabled = false;
+
+        if (error) {
+            console.error('Supabase insert error:', error);
+            formStatus.classList.add('error');
+            formStatus.textContent = "❌ Something went wrong. Please try again.";
+        } else {
+            formStatus.classList.remove('error');
+            formStatus.textContent = "✅ Thanks! Your message has been sent.";
+            contactForm.reset();
+        }
 
         setTimeout(() => {
             formStatus.textContent = '';
+            formStatus.classList.remove('error');
         }, 5000);
     });
 }
